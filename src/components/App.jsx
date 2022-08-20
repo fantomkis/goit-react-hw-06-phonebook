@@ -1,18 +1,18 @@
-import { nanoid } from 'nanoid';
-import { useState, useEffect } from 'react';
+// import { nanoid } from 'nanoid';
+
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 export function App() {
-  const [contacts, setcCntacts] = useState(
-    () => JSON.parse(localStorage.getItem('contacts')) ?? []
-  );
-  const [filter, setFilter] = useState('');
+  // const [contacts, setcCntacts] = useState(
+  //   () => JSON.parse(localStorage.getItem('contacts')) ?? []
+  // );
+  // const [filter, setFilter] = useState('');
 
-  useEffect(() => {
-    const data = JSON.stringify(contacts);
-    localStorage.setItem('contacts', data);
-  }, [contacts]);
+  // useEffect(() => {
+  //   const data = JSON.stringify(contacts);
+  //   localStorage.setItem('contacts', data);
+  // }, [contacts]);
 
   // componentDidMount() {
   //   const date = ;
@@ -31,33 +31,33 @@ export function App() {
   //     localStorage.setItem("contacts", data);
   //   }
   // }
-  const onAddContact = (name, number) => {
-    const repeatOfNames = contacts.find(
-      el => el.name.toLowerCase() === name.toLowerCase()
-    );
-    if (repeatOfNames) {
-      alert(`${name} is already is in contacts.`);
-      return;
-    }
-    setcCntacts(prev => [
-      ...prev,
-      { id: nanoid(), name: name, number: number },
-    ]);
-  };
+  // const onAddContact = (name, number) => {
+  //   const repeatOfNames = contacts.find(
+  //     el => el.name.toLowerCase() === name.toLowerCase()
+  //   );
+  //   if (repeatOfNames) {
+  //     alert(`${name} is already is in contacts.`);
+  //     return;
+  //   }
+  //   setcCntacts(prev => [
+  //     ...prev,
+  //     { id: nanoid(), name: name, number: number },
+  //   ]);
+  // };
 
-  const filterChang = e => {
-    setFilter(e.target.value);
-  };
-  const onFilterContacts = () => {
-    const filterContacts = contacts.filter(el =>
-      el.name.toLowerCase().includes(filter.toLowerCase())
-    );
-    return filterContacts;
-  };
+  // const filterChang = e => {
+  //   setFilter(e.target.value);
+  // };
+  // const onFilterContacts = () => {
+  //   const filterContacts = contacts.filter(el =>
+  //     el.name.toLowerCase().includes(filter.toLowerCase())
+  //   );
+  //   return filterContacts;
+  // };
 
-  const onDeleteContact = id => {
-    setcCntacts(prev => prev.filter(el => el.id !== id));
-  };
+  // const onDeleteContact = id => {
+  //   setcCntacts(prev => prev.filter(el => el.id !== id));
+  // };
 
   return (
     <div
@@ -72,13 +72,10 @@ export function App() {
       }}
     >
       <h1>Phonebook</h1>
-      <ContactForm onAddContact={onAddContact} />
+      <ContactForm />
       <h2>Contacts</h2>
-      <Filter filter={filter} filterChang={filterChang} />
-      <ContactList
-        contacts={onFilterContacts()}
-        onDeleteContact={onDeleteContact}
-      />
+      <Filter />
+      <ContactList />
     </div>
   );
 }
